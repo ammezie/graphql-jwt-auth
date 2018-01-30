@@ -32,5 +32,5 @@ app.use(
 )
 
 app.listen(PORT, () => {
-  console.log(`GraphiQL is running on http://localhost:${PORT}/api`)
+  console.log(`The server is running on http://localhost:${PORT}/api`)
 })

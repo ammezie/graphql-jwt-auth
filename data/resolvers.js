@@ -22,11 +22,18 @@ const resolvers = {
   Mutation: {
     // Handle user signup
     async signup (_, { username, email, password }) {
-      return await User.create({
+      const user = await User.create({
         username,
         email,
         password: await bcrypt.hash(password, 10)
       })
+
+      // Return json web token
+      return jsonwebtoken.sign(
+        { id: user.id, email: user.email },
+        process.env.JWT_SECRET,
+        { expiresIn: '1y' }
+      )
     },
 
     // Handles user login
